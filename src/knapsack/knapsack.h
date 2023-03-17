@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 
+using table = std::vector<std::vector<int>>;
 
 class InvalidMethodError : public std::exception
 {
@@ -39,7 +40,8 @@ private:
     std::vector<Item> m_items;
 
     int maxProfitRec(int currentWeight, int item);
-    int maxProfitMem(int currentWeight, int item, std::vector<std::vector<int>>& profits);
+    int maxProfitMem(int currentWeight, int item, table& profits);
+    int maxProfitDP();
 
 public:
 
