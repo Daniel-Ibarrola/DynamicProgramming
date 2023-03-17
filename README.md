@@ -4,4 +4,4 @@ Dynamic programming algorithms implemented in C++.
 
 ## Contents
 
--[01 Knapsack witn recursion](src/knapsack/knapsack.cpp)
+-[01 Knapsack with recursion](src/knapsack/knapsack.cpp)

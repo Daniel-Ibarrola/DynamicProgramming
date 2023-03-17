@@ -5,8 +5,9 @@
 #ifndef DYNAMICPROGRAMMING_KNAPSACK_H
 #define DYNAMICPROGRAMMING_KNAPSACK_H
 
-#include <string>
+#include <cassert>
+#include <vector>
 
-std::string knapsack();
+int knapsack(int capacity, const std::vector<int>& weights, const std::vector<int>& profits);
 
 #endif //DYNAMICPROGRAMMING_KNAPSACK_H
