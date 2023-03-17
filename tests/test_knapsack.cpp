@@ -6,11 +6,21 @@
 #include "knapsack.h"
 
 
-TEST(TestO1Knapsack, ComputesMaxProfitCorrectly)
+TEST(TestO1KnapsackRecursion, ComputesMaxProfitCorrectly)
 {
-    std::vector<int> weights {3, 2, 4};
-    std::vector<int> profits {6, 8, 7};
-    int capacity {8};
-    ASSERT_EQ(knapsack(capacity, weights, profits), 15);
+    std::vector<Item> items {
+            {3, 6}, {2, 8}, {4, 7}
+    };
+    Knapsack knapsack(8, items);
+    ASSERT_EQ(knapsack.maxProfit("rec"), 15);
 }
 
+TEST(TestO1KnapsackMemoization, ComputesMaxProfitCorrectly)
+{
+    std::vector<Item> items {
+            {3, 6}, {2, 8}, {4, 7}
+    };
+    Knapsack knapsack(8, items);
+    int result {knapsack.maxProfit("mem")};
+    ASSERT_EQ(result, 15);
+}
