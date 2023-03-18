@@ -7,6 +7,8 @@
 
 #include <vector>
 
-bool subsetSum(int sum, const std::vector<int>& set);
+using table = std::vector<std::vector<bool>>;
+
+bool subsetSum(int targetSum, const std::vector<int>& set);
 
 #endif //DYNAMICPROGRAMMING_SUBSET_H
