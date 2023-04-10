@@ -53,3 +53,29 @@ bool subsetSum(int targetSum, const std::vector<int>& set)
 
     return results[results.size() - 1][targetSum];
 }
+
+
+int subsetsWithSum(const std::vector<int>& set, int targetSum)
+{
+    // Counts the number of subsets whose element sum is equal to the target sum
+    std::vector<std::vector<int>> results(set.size() + 1, std::vector<int>(targetSum + 1, 0));
+    // For a sum of zero, we can always found a subset (null subset or {0})
+    for (auto element {0}; element < results.size(); ++element)
+        results[element][0] = 1;
+
+    int numOfZeros {0};
+    for (auto element {1}; element < results.size(); ++element)
+        for (auto sum {1}; sum < results[element].size(); ++sum)
+        {
+            if (set[element - 1] == 0)
+                ++numOfZeros;
+            if (set[element - 1] > sum)
+                results[element][sum] = results[element - 1][sum];
+            else
+                results[element][sum] =
+                        results[element - 1][sum] + results[element - 1][sum - set[element - 1]];
+
+        }
+
+    return static_cast<int>(std::pow(2, numOfZeros)) * results[results.size() - 1][targetSum];
+}
