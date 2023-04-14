@@ -12,6 +12,8 @@
 
 using matrix = std::vector<std::vector<int>>;
 
-int coinChange(const std::vector<int>& coins, int targetAmount);
+int minCoins(const std::vector<int>& coins, int targetAmount);
+
+int numCoinCombinations(const std::vector<int>& coins, int targetAmount);
 
 #endif //DYNAMICPROGRAMMING_COIN_CHANGE_H
