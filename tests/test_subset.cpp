@@ -59,3 +59,17 @@ TEST(TestSubsetWithSum, set4)
     std::vector<int> set {0, 0, 1};
     ASSERT_EQ(subsetsWithSum(set, 1), 4);
 }
+
+
+TEST(TestMinimumSubsetSumDifference, EmptySet)
+{
+    std::vector<int> set;
+    ASSERT_EQ(minSubsetSumDiff(set), 0);
+}
+
+
+TEST(TestMinimumSubsetSumDifference, Test1)
+{
+    std::vector<int> set {1, 6, 11, 5};
+    ASSERT_EQ(minSubsetSumDiff(set), 1);
+}

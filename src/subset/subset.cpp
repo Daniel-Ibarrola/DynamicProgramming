@@ -22,15 +22,8 @@ bool subsetSum(int currentSum, int element, const std::vector<int>& set)
 }
 
 
-bool subsetSum(int targetSum, const std::vector<int>& set)
+table subsetSumTable(int targetSum, const std::vector<int>& set)
 {
-    // Returns true if there exists a subset of the given set, whose elements sum is equal
-    // to the given sum value
-    // Time complexity O(targetSum * set.size())
-
-    if (set.empty())
-        return true;
-
     table results(set.size() + 1, std::vector<bool>(targetSum + 1, false));
 
     // For a sum of zero, we can always found a subset (null subset or {0})
@@ -50,7 +43,18 @@ bool subsetSum(int targetSum, const std::vector<int>& set)
                         results[element - 1][sum - set[element - 1]]; // Include
         }
     }
+    return results;
+}
 
+
+bool subsetSum(int targetSum, const std::vector<int>& set)
+{
+    // Returns true if there exists a subset of the given set, whose elements sum is equal
+    // to the given sum value
+    // Time complexity O(targetSum * set.size())
+    if (set.empty())
+        return true;
+    table results {subsetSumTable(targetSum, set)};
     return results[results.size() - 1][targetSum];
 }
 
@@ -78,4 +82,23 @@ int subsetsWithSum(const std::vector<int>& set, int targetSum)
         }
 
     return static_cast<int>(std::pow(2, numOfZeros)) * results[results.size() - 1][targetSum];
+}
+
+
+int minSubsetSumDiff(const std::vector<int>& set)
+{
+    //! \brief Given a set it returns the minimum difference after
+    /// partitioning such set into two subsets and computing the difference of the sum of their elements
+    //! \param set a vector with numbers
+    int targetSum {std::reduce(set.begin(), set.end())};
+    table results {subsetSumTable(targetSum / 2, set)};
+    std::size_t lastRow {results.size() - 1};
+
+    int minDiff {std::numeric_limits<int>::max()};
+    for (auto ii {0}; ii < results[lastRow].size(); ++ii)
+    {
+        if (results[lastRow][ii])
+            minDiff = std::min(minDiff, targetSum - 2 * ii);
+    }
+    return minDiff;
 }
