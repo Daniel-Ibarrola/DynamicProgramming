@@ -11,4 +11,6 @@ using matrix = std::vector<std::vector<int>>;
 
 int numUniquePaths(int n, int m);
 
+int numUniquePaths(const matrix& grid);
+
 #endif //DYNAMICPROGRAMMING_PATHS_H

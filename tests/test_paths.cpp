@@ -28,3 +28,38 @@ TEST(TestUniquePaths, Grid3X4)
 {
     ASSERT_EQ(numUniquePaths(3, 4), 10);
 }
+
+
+TEST(TestUniquePathsWithObstacles, GridWithNoObstacles)
+{
+    matrix grid (3, std::vector<int>(3, 0));
+    ASSERT_EQ(numUniquePaths(grid), 6);
+}
+
+
+TEST(TestUniquePathsWithObstacles, Grid3X3)
+{
+    matrix grid (3, std::vector<int>(3, 0));
+    grid[1][1] = 1;
+    ASSERT_EQ(numUniquePaths(grid), 2);
+}
+
+
+TEST(TestUniquePathsWithObstacles, Grid3X4)
+{
+    matrix grid {
+            {0, 0, 0, 0},
+            {1, 0, 1, 0},
+            {0, 0 ,0, 0},
+    };
+    ASSERT_EQ(numUniquePaths(grid), 2);
+}
+
+
+TEST(TestUniquePathsWithObstacles, Grid5X4)
+{
+    matrix grid (5, std::vector<int>(4, 0));
+    grid[0][1] = 1;
+    grid[2][0] = 1;
+    ASSERT_EQ(numUniquePaths(grid), 0);
+}
